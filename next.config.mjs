@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: "export",
+  basePath: "/test-avtobus",
+  assetPrefix: "/test-avtobus/",
   images: {
     domains: [],
     formats: ["image/avif", "image/webp"],
