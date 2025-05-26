@@ -1,6 +1,6 @@
 {
-  "name": "@faygo1337/contacts-app",
-  "version": "0.1.1",
+  "name": "@Faygo1337/contacts-app",
+  "version": "0.1.3",
   "private": false,
   "scripts": {
     "dev": "next dev",
