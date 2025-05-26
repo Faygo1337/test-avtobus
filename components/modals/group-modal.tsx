@@ -20,7 +20,6 @@ export function GroupModal({
   onClose,
 }: GroupModalProps) {
   const [newGroupName, setNewGroupName] = useState("");
-  // const [editName, setEditName] = useState(editingGroup?.name || "")
 
   const handleAddGroup = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,21 +29,13 @@ export function GroupModal({
     setNewGroupName("");
   };
 
-  // const handleEditGroup = (e: React.FormEvent) => {
-  //   e.preventDefault()
-  //   if (!editName.trim() || !editingGroup) return
-
-  //   onSave({ name: editName.trim() })
-  //   setEditName("")
-  // }
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="sidebar" onClick={(e) => e.stopPropagation()}>
         <div className="sidebar__header">
           <h2 className="sidebar__title">Группы контактов</h2>
           <button className="sidebar__close" onClick={onClose}>
-            ×
+          <Image src="/closeIcon.svg" width={20} height={20} alt="closeicon"/>
           </button>
         </div>
         <div className="sidebar__content">
@@ -58,9 +49,10 @@ export function GroupModal({
                     className="contact-item__action contact-item__action--delete"
                     onClick={() => onDelete(group)}
                     aria-label="Удалить контакт"
+                    style={{width: "45px", height: "45px"}}
                   >
                     <Image
-                      src="/delete.svg"
+                      src="/deleteIcon.svg"
                       alt="Удалить"
                       width={26}
                       height={26}
@@ -77,13 +69,14 @@ export function GroupModal({
                 onChange={(e) => setNewGroupName(e.target.value)}
                 placeholder="Введите название"
                 style={{
-                  background: "none",
-                  border: "none",
-                  boxShadow: "none",
-                  outline: "none",
-                  padding: 0,
-                  fontSize: "var(--font-size-base)",
+                  fontWeight: 500,
                   color: "var(--color-text)",
+                  fontSize: "var(--font-size-base)",
+                  backgroundColor: "var(--color-background-hover)",
+                  border: "none",
+                  borderRadius: "6px",
+                  boxShadow: "none",
+                  padding: "12px 10px 12px 10px",
                 }}
               />
             </div>

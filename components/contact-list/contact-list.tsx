@@ -19,8 +19,6 @@ export function ContactList({
   groups,
   onEditContact,
   onDeleteContact,
-  // onEditGroup,
-  // onDeleteGroup,
 }: ContactListProps) {
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({})
 
@@ -64,26 +62,10 @@ export function ContactList({
                   {group.name}
                   <div>
                     <span className={`contact-list__group-arrow${isOpen ? ' contact-list__group-arrow--expanded' : ''}`}>
-                      <Image src="/arrow.svg" alt="arrow" width={13} height={8} style={{ transition: 'transform 0.2s', transform: isOpen ? 'rotate(0deg)' : 'rotate(0deg)' }} />
+                      <Image src="/arrowIcon.svg" alt="arrow" width={13} height={8} style={{ transition: 'transform 0.2s', transform: isOpen ? 'rotate(0deg)' : 'rotate(0deg)' }} />
                     </span>
                   </div>
                 </div>
-                {/* <div className="contact-list__group-actions" onClick={e => e.stopPropagation()}>
-                  <button
-                    className="contact-list__group-action"
-                    onClick={() => onEditGroup(group)}
-                    aria-label="Редактировать группу"
-                  >
-                    <Image src="/penIcon.svg" alt="Редактировать" width={18} height={18} />
-                  </button>
-                  <button
-                    className="contact-list__group-action contact-list__group-action--delete"
-                    onClick={() => onDeleteGroup(group)}
-                    aria-label="Удалить группу"
-                  >
-                    <Image src="/deleteIcon.svg" alt="Удалить" width={26} height={26} />
-                  </button>
-                </div> */}
               </div>
 
               <div className={`contact-list__items${isOpen ? ' contact-list__items--expanded' : ''}`}

@@ -26,7 +26,7 @@ export function ContactItem({ contact, onEdit, onDelete }: ContactItemProps) {
           onClick={onDelete}
           aria-label="Удалить контакт"
         >
-          <Image src="/delete.svg" alt="Удалить" width={26} height={26} />
+          <Image src="/deleteIcon.svg" alt="Удалить" width={26} height={26} />
         </button>
       </div>
     </div>

@@ -10,7 +10,7 @@ import { ContactModal } from "./modals/contact-modal"
 import { GroupModal } from "./modals/group-modal"
 import { ConfirmModal } from "./modals/confirm-modal"
 import { Toast } from "./toast/toast"
-
+import Image from "next/image"
 export function ContactsApp() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [groups, setGroups] = useState<Group[]>([])
@@ -42,12 +42,26 @@ export function ContactsApp() {
       let updatedContacts: Contact[]
 
       if (editingContact) {
+        const duplicateName = contacts.find(
+          (c) => c.name.trim().toLowerCase() === contactData.name.trim().toLowerCase() && c.id !== editingContact.id
+        )
+        if (duplicateName) {
+          showToast("Контакт с таким именем уже существует", "error")
+          return
+        }
         updatedContacts = contactManager.updateContact(contacts, editingContact.id, contactData)
         showToast("Контакт успешно обновлен")
       } else {
         const existingContact = contacts.find((c) => c.phone === contactData.phone)
         if (existingContact) {
           showToast("Контакт с таким номером уже существует", "error")
+          return
+        }
+        const duplicateName = contacts.find(
+          (c) => c.name.trim().toLowerCase() === contactData.name.trim().toLowerCase()
+        )
+        if (duplicateName) {
+          showToast("Контакт с таким именем уже существует", "error")
           return
         }
         updatedContacts = contactManager.addContact(contacts, contactData)
@@ -119,16 +133,12 @@ export function ContactsApp() {
   return (
     <div className="contacts-app">
       <Header
-        // groups={groups}
-        // selectedGroup="all"
-        // onGroupChange={() => {}}
         onAddContact={() => setIsContactModalOpen(true)}
         onManageGroups={() => setIsGroupModalOpen(true)}
       />
       <div className="add-contact-mobile">
         <button className="button button--primary button--mobile-add" onClick={() => setIsContactModalOpen(true)}>
-          
-          Добавить контакт +
+        Добавить контакт <Image src="/plusIcon.svg" width={17} height={17} alt="closeicon"/>
         </button>
       </div>
 
@@ -149,9 +159,6 @@ export function ContactsApp() {
           setIsConfirmModalOpen(true)
         }}
       />
-
-
-      
 
       {isContactModalOpen && (
         <ContactModal
@@ -185,7 +192,7 @@ export function ContactsApp() {
       {isConfirmModalOpen && deletingGroup && (
         <ConfirmModal
           title="Удалить группу?"
-          message={`Вы уверены, что хотите удалить эту группу? Это приведет к удалению всех контактов, находящихся в этой группе.`}
+          message={`Удаление группы повлечет за собой удаление контактов связанных с этой группой`}
           onConfirm={handleDeleteGroup}
           onCancel={() => {
             setIsConfirmModalOpen(false)

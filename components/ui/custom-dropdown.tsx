@@ -41,7 +41,7 @@ export function CustomDropdown({ options, value, onChange, placeholder }: Custom
       >
         <span className="custom-dropdown__value">{selectedOption ? selectedOption.label : placeholder}</span>
         <span className="custom-dropdown__arrow" style={{ transition: 'transform 0.2s', transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)' }}>
-          <Image src="/arrow.svg" alt="arrow" width={13} height={8} />
+          <Image src="/arrowIcon.svg" alt="arrow" width={13} height={8} />
         </span>
       </button>
 

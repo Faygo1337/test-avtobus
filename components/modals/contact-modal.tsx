@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import type { Contact, Group } from "@/types/contacts"
 import { CustomDropdown } from "../ui/custom-dropdown"
 import { PhoneInput } from "../ui/phone-input"
-
+import Image from "next/image"
 interface ContactModalProps {
   contact?: Contact | null
   groups: Group[]
@@ -106,7 +106,7 @@ export function ContactModal({ contact, groups, onSave, onClose }: ContactModalP
         <div className="contact-sidebar__header">
           <h2 className="contact-sidebar__title">{contact ? "Редактировать контакт" : "Добавление контакта"}</h2>
           <button className="contact-sidebar__close" onClick={onClose}>
-            ×
+          <Image src="/closeIcon.svg" width={20} height={20} alt="closeicon"/>
           </button>
         </div>
 
